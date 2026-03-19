@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athea Global Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1A2B6D; --navy-d:#111C4A; --green:#6DC219; --green-p:#F0FAE6; --green-m:#C5E89A;
+  --orange:#F57C28; --orange-p:#FEF3EA; --cream:#FAFAF7; --charcoal:#1A1A2E;
+  --mid:#4A5568; --border:#E2E8F0; --white:#fff; --shadow:0 4px 24px rgba(26,43,109,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--charcoal);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
+  justify-content:space-between;padding:12px 48px;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{cursor:pointer;display:flex;align-items:center;}
+.nav-logo img{height:46px;width:auto;object-fit:contain;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--mid);font-size:14px;font-weight:500;cursor:pointer;
+  transition:color .2s;padding:4px 0;border-bottom:2px solid transparent;}
+.nav-links a:hover{color:var(--navy);}
+.nav-links a.active{color:var(--navy);border-bottom-color:var(--green);}
+.nav-cta{background:var(--orange)!important;color:#fff!important;padding:10px 22px!important;
+  border-radius:100px;border-bottom:none!important;}
+.nav-cta:hover{background:var(--navy)!important;}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding-top:73px;animation:fadeUp .4s ease;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── BUTTONS ── */
+.btn{display:inline-block;border:none;cursor:pointer;font-family:"DM Sans",sans-serif;
+  font-size:15px;font-weight:600;transition:all .2s;text-decoration:none;text-align:center;}
+.btn-o{background:var(--orange);color:#fff;padding:14px 28px;border-radius:100px;}
+.btn-o:hover{background:var(--navy);transform:translateY(-1px);box-shadow:0 8px 24px rgba(26,43,109,.2);}
+.btn-g{background:var(--green);color:#fff;padding:14px 28px;border-radius:100px;}
+.btn-g:hover{background:var(--navy);transform:translateY(-1px);}
+.btn-n{background:var(--navy);color:#fff;padding:14px 28px;border-radius:100px;}
+.btn-n:hover{background:var(--navy-d);}
+.btn-w{background:#fff;color:var(--orange);padding:14px 28px;border-radius:100px;font-weight:700;}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
+.btn-ghost{background:transparent;color:var(--navy);padding:13px 24px;border-radius:100px;
+  border:2px solid var(--border);}
+.btn-ghost:hover{border-color:var(--navy);}
+
+/* ── SECTION HELPERS ── */
+.sec{padding:80px 72px;} .sec-b{padding:0 72px 80px;}
+.lbl{font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:var(--orange);margin-bottom:14px;}
+.ttl{font-family:"Playfair Display",serif;font-size:clamp(30px,3.5vw,46px);line-height:1.15;color:var(--navy);margin-bottom:36px;}
+.ttl em{font-style:italic;color:var(--green);}
+
+/* ── HERO ── */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 73px);}
+.hero-l{display:flex;flex-direction:column;justify-content:center;gap:28px;padding:80px 60px 80px 72px;}
+.badge{display:inline-flex;align-items:center;gap:8px;width:fit-content;background:var(--green-p);
+  border:1px solid var(--green-m);padding:7px 14px;border-radius:100px;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(42px,4.8vw,66px);line-height:1.06;color:var(--navy);}
+.hero h1 em{font-style:italic;color:var(--orange);}
+.hero-body{font-size:16px;line-height:1.75;color:var(--mid);max-width:460px;}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);background:var(--border);gap:1px;
+  border-radius:16px;overflow:hidden;border:1px solid var(--border);max-width:460px;}
+.stat{background:#fff;padding:20px 16px;}
+.stat-n{font-family:"Playfair Display",serif;font-size:34px;font-weight:700;color:var(--navy);}
+.stat-l{font-size:12px;color:var(--mid);margin-top:2px;line-height:1.3;}
+.hero-btns{display:flex;gap:12px;}
+.hero-r{background:var(--navy);position:relative;overflow:hidden;display:flex;
+  flex-direction:column;justify-content:flex-end;min-height:580px;}
+.hero-r::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 25% 25%,rgba(109,194,25,.18) 0%,transparent 55%),
+              radial-gradient(circle at 85% 75%,rgba(245,124,40,.15) 0%,transparent 50%);}
+.hero-mesh{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);
+  grid-template-rows:repeat(6,1fr);gap:2px;opacity:.07;}
+.hero-mesh div{background:#fff;border-radius:2px;}
+.hero-content{padding:56px 48px;z-index:2;position:relative;}
+.hero-tagline{font-family:"Playfair Display",serif;font-size:26px;font-style:italic;
+  color:#fff;line-height:1.4;margin-bottom:16px;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:.05em;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.hpill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.8);padding:7px 14px;border-radius:100px;font-size:12px;}
+
+/* ── CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{background:#fff;border-radius:20px;border:1px solid var(--border);overflow:hidden;transition:all .3s;}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+.card-top{height:140px;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.ct-g{background:var(--green-p)}.ct-o{background:var(--orange-p)}.ct-n{background:#EEF2FF;}
+.card-body{padding:28px;}
+.card-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--orange);margin-bottom:8px;}
+.card-name{font-family:"Playfair Display",serif;font-size:21px;color:var(--navy);margin-bottom:10px;}
+.card-desc{font-size:14px;line-height:1.65;color:var(--mid);}
+.card-stat{display:flex;align-items:baseline;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid var(--border);}
+.csn{font-family:"Playfair Display",serif;font-size:26px;font-weight:700;color:var(--navy);}
+.csl{font-size:12px;color:var(--mid);}
+
+/* ── COUNTIES ── */
+.counties{background:var(--navy);padding:72px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.counties .lbl{color:rgba(255,255,255,.5);}
+.counties .ttl{color:#fff;}.counties .ttl em{color:var(--green);}
+.cpills{display:flex;flex-wrap:wrap;gap:8px;}
+.cpill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.8);padding:8px 15px;border-radius:100px;font-size:13px;transition:all .2s;cursor:default;}
+.cpill:hover{background:var(--green);border-color:var(--green);color:#fff;}
+
+/* ── FUNDRAISER BAND ── */
+.fband{background:var(--orange);border-radius:20px;padding:40px 48px;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;}
+.fband h3{font-family:"Playfair Display",serif;font-size:26px;color:#fff;margin-bottom:6px;}
+.fband p{font-size:14px;color:rgba(255,255,255,.85);}
+.pbar{height:8px;background:rgba(255,255,255,.28);border-radius:100px;overflow:hidden;margin:14px 0 6px;}
+.pfill{height:100%;border-radius:100px;background:#fff;transition:width 1s ease;}
+.plbl{font-size:12px;color:rgba(255,255,255,.8);}
+
+/* ── ABOUT ── */
+.about-hdr{background:var(--navy);padding:80px 72px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;min-height:55vh;}
+.about-hdr .lbl{color:rgba(255,255,255,.45);}
+.about-hdr h2{font-family:"Playfair Display",serif;font-size:clamp(34px,3.8vw,50px);line-height:1.15;color:#fff;}
+.about-hdr h2 em{font-style:italic;color:var(--green);}
+.about-hdr p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.72);}
+.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+.val{background:#fff;padding:40px 28px;}
+.val-icon{font-size:30px;margin-bottom:14px;}
+.val-name{font-family:"Playfair Display",serif;font-size:19px;color:var(--navy);margin-bottom:8px;}
+.val-desc{font-size:13px;line-height:1.65;color:var(--mid);}
+.founder{display:grid;grid-template-columns:280px 1fr;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:#fff;}
+.founder-vis{background:linear-gradient(135deg,var(--navy) 60%,var(--green) 100%);
+  display:flex;align-items:center;justify-content:center;font-size:72px;min-height:280px;}
+.founder-body{padding:48px 48px 48px 40px;display:flex;flex-direction:column;gap:14px;justify-content:center;}
+.fey{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--orange);}
+.fname{font-family:"Playfair Display",serif;font-size:30px;color:var(--navy);}
+.fbio{font-size:14px;line-height:1.8;color:var(--mid);}
+.hw{background:var(--green-p);border:1px solid var(--green-m);border-radius:20px;padding:40px 48px;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;}
+.hw h3{font-family:"Playfair Display",serif;font-size:24px;color:var(--navy);margin-bottom:8px;}
+.hw p{font-size:14px;line-height:1.65;color:var(--mid);}
+
+/* ── IMPACT ── */
+.impact-hdr{background:var(--green);padding:80px 72px;}
+.impact-hdr .lbl{color:rgba(255,255,255,.6);}
+.impact-hdr h2{font-family:"Playfair Display",serif;font-size:clamp(34px,4vw,50px);color:#fff;margin-bottom:20px;}
+.impact-hdr p{font-size:16px;color:rgba(255,255,255,.85);max-width:560px;line-height:1.75;}
+.inums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);}
+.inum{background:#fff;padding:48px 28px;}
+.inum-big{font-family:"Playfair Display",serif;font-size:52px;line-height:1;color:var(--navy);}
+.inum-lbl{font-size:14px;color:var(--mid);margin-top:8px;line-height:1.4;}
+.progs{display:flex;flex-direction:column;gap:20px;}
+.prog{display:grid;grid-template-columns:72px 1fr auto;gap:28px;align-items:start;
+  background:#fff;border-radius:20px;padding:36px;border:1px solid var(--border);transition:all .25s;}
+.prog:hover{box-shadow:var(--shadow);}
+.prog-n{font-family:"Playfair Display",serif;font-size:44px;color:var(--border);line-height:1;}
+.prog-name{font-family:"Playfair Display",serif;font-size:23px;color:var(--navy);margin-bottom:8px;}
+.prog-desc{font-size:14px;line-height:1.7;color:var(--mid);}
+.prog-tag{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
+  color:var(--orange);background:var(--orange-p);padding:7px 13px;border-radius:100px;height:fit-content;white-space:nowrap;}
+
+/* ── FINANCES ── */
+.fin-hdr{background:var(--navy-d);padding:80px 72px;}
+.fin-hdr .lbl{color:rgba(255,255,255,.4);}
+.fin-hdr h2{font-family:"Playfair Display",serif;font-size:clamp(34px,4vw,50px);color:#fff;margin-bottom:16px;}
+.fin-hdr p{font-size:15px;color:rgba(255,255,255,.65);max-width:640px;line-height:1.75;}
+.sheet-notice{display:flex;align-items:flex-start;gap:16px;background:rgba(109,194,25,.12);
+  border:1px solid rgba(109,194,25,.3);border-radius:14px;padding:20px 24px;margin-top:28px;}
+.sheet-notice strong{color:var(--green);}
+.sheet-notice p{font-size:14px;color:rgba(255,255,255,.72);line-height:1.6;}
+.sheet-notice a{color:var(--green);text-decoration:underline;}
+
+/* ── LIVE DASHBOARD ── */
+.live-grid{padding:56px 72px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.dc{background:#fff;border-radius:20px;border:1px solid var(--border);padding:28px;}
+.dc.full{grid-column:1/-1;}
+.dc.green{background:var(--green);} .dc.navy{background:var(--navy);} .dc.orange{background:var(--orange);}
+.dc-lbl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+.dc-lbl.dk{color:var(--mid);} .dc-lbl.lt{color:rgba(255,255,255,.55);}
+.dc-big{font-family:"Playfair Display",serif;font-size:42px;line-height:1;}
+.dc-big.dk{color:var(--navy);} .dc-big.lt{color:#fff;}
+.dc-sub{font-size:13px;margin-top:6px;}
+.dc-sub.dk{color:var(--mid);} .dc-sub.lt{color:rgba(255,255,255,.65);}
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(109,194,25,.18);
+  border:1px solid rgba(109,194,25,.4);border-radius:100px;padding:5px 10px;
+  font-size:11px;font-weight:700;color:var(--green);margin-top:12px;}
+.live-badge.lt{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.9);}
+.ldot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite;}
+.ldot.lt{background:#fff;}
+
+/* progress bar inside dash */
+.mini-pbar{height:8px;border-radius:100px;overflow:hidden;margin:14px 0 6px;}
+.mini-pbar.lt{background:rgba(255,255,255,.28);}
+.mini-pbar.dk{background:var(--border);}
+
+/* allocation bars inside full card */
+.alloc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:20px;}
+.alloc-item{}
+.alloc-head{display:flex;justify-content:space-between;margin-bottom:8px;}
+.alloc-name{font-size:14px;font-weight:600;color:var(--navy);}
+.alloc-pct{font-size:14px;font-weight:700;}
+.alloc-bar-wrap{height:8px;background:var(--border);border-radius:100px;overflow:hidden;}
+.alloc-bar-fill{height:100%;border-radius:100px;}
+.alloc-note{font-size:12px;color:var(--mid);margin-top:6px;}
+
+/* ── LEDGER ── */
+.ledger-wrap{padding:0 72px 72px;}
+.ledger-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.ledger-ttl{font-family:"Playfair Display",serif;font-size:26px;color:var(--navy);}
+.filters{display:flex;gap:8px;flex-wrap:wrap;}
+.fb{padding:8px 16px;border-radius:100px;border:1.5px solid var(--border);background:transparent;
+  font-size:13px;font-weight:500;cursor:pointer;color:var(--mid);font-family:"DM Sans",sans-serif;transition:all .2s;}
+.fb.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.tbl{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--border);}
+.tbl-h{display:grid;grid-template-columns:110px 1fr 130px 140px 110px;padding:14px 24px;
+  background:#F7F9FF;border-bottom:1px solid var(--border);font-size:11px;letter-spacing:.07em;
+  text-transform:uppercase;font-weight:700;color:var(--mid);gap:14px;}
+.tbl-r{display:grid;grid-template-columns:110px 1fr 130px 140px 110px;padding:18px 24px;
+  border-bottom:1px solid var(--border);font-size:14px;align-items:center;gap:14px;transition:background .15s;}
+.tbl-r:hover{background:#F7F9FF;}
+.tbl-r:last-child{border-bottom:none;}
+.td-date{color:var(--mid);font-size:12px;}
+.td-desc{font-weight:500;color:var(--navy);}
+.tcat{font-size:10px;padding:4px 10px;border-radius:100px;font-weight:700;letter-spacing:.04em;width:fit-content;}
+.ci{background:#EBF8E5;color:#2D6A4F;}.cp{background:#EEF2FF;color:#3730A3;}
+.co{background:var(--orange-p);color:#9A4111;}.ce{background:#F5F0FF;color:#5B21B6;}
+.td-amt{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;}
+.credit{color:#16a34a;}.debit{color:#dc2626;}
+.td-bal{font-size:12px;color:var(--mid);}
+.loading-box{text-align:center;padding:48px 24px;color:var(--mid);font-size:14px;}
+.spinner{display:inline-block;width:24px;height:24px;border:2px solid var(--border);
+  border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── STORIES FEED ── */
+.stories-section{padding:0 72px 72px;}
+.stories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.story-card{background:#fff;border-radius:20px;border:1px solid var(--border);overflow:hidden;transition:all .3s;}
+.story-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.story-top{padding:20px 24px 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.story-icon{font-size:32px;}
+.story-date{font-size:11px;color:var(--mid);letter-spacing:.04em;}
+.story-body{padding:16px 24px 24px;}
+.story-prog{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:6px;}
+.story-prog.g{color:var(--green);} .story-prog.o{color:var(--orange);} .story-prog.n{color:var(--navy);}
+.story-title{font-family:"Playfair Display",serif;font-size:18px;color:var(--navy);margin-bottom:8px;}
+.story-text{font-size:13px;line-height:1.65;color:var(--mid);}
+.story-amount{display:inline-block;margin-top:14px;background:var(--green-p);border:1px solid var(--green-m);
+  color:var(--navy);font-size:11px;font-weight:700;padding:5px 10px;border-radius:100px;}
+
+/* transparency pillars */
+.pillars{background:var(--navy);border-radius:20px;padding:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:28px;}
+.pillar-icon{font-size:28px;margin-bottom:12px;}
+.pillar-name{font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;}
+.pillar-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
+
+/* ── DONATE ── */
+.donate-split{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 73px);}
+.donate-l{background:var(--navy);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;gap:28px;color:#fff;}
+.donate-l .lbl{color:rgba(255,255,255,.45);}
+.donate-l h2{font-family:"Playfair Display",serif;font-size:clamp(34px,3.5vw,50px);line-height:1.15;}
+.donate-l p{font-size:15px;line-height:1.8;opacity:.78;}
+.ilist{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.ilist li{display:flex;align-items:flex-start;gap:12px;font-size:14px;opacity:.85;}
+.ilist li::before{content:"✓";background:var(--green);border-radius:50%;width:22px;height:22px;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:#fff;}
+.ledger-teaser{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;padding:24px;margin-top:8px;}
+.donate-r{background:var(--cream);padding:72px 64px;display:flex;flex-direction:column;gap:24px;justify-content:center;}
+.donate-r h3{font-family:"Playfair Display",serif;font-size:28px;color:var(--navy);}
+.damts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.da{border:2px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center;
+  cursor:pointer;background:#fff;transition:all .2s;}
+.da.on{border-color:var(--navy);background:#EEF2FF;}
+.da:hover{border-color:var(--navy);}
+.da-a{font-family:"Playfair Display",serif;font-size:24px;color:var(--navy);}
+.da-l{font-size:11px;color:var(--mid);margin-top:4px;line-height:1.3;}
+.form{display:flex;flex-direction:column;gap:12px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fl{font-size:13px;font-weight:600;color:var(--mid);}
+.fi{padding:13px 16px;border-radius:12px;border:1.5px solid var(--border);font-size:15px;
+  font-family:"DM Sans",sans-serif;color:var(--navy);transition:border-color .2s;outline:none;background:#fff;}
+.fi:focus{border-color:var(--navy);}
+.d-redirect{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:24px;text-align:center;}
+.d-redirect p{font-size:13px;color:var(--mid);margin-bottom:14px;line-height:1.55;}
+
+/* ── FOOTER ── */
+footer{background:var(--navy-d);color:#fff;padding:56px 72px 36px;}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.fb-name{font-family:"Playfair Display",serif;font-size:19px;margin-bottom:4px;}
+.fb-sub{font-size:12px;opacity:.4;margin-bottom:14px;}
+.fb-desc{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;}
+.fc h4{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.35);margin-bottom:14px;}
+.fc a,.fc span{display:block;font-size:14px;color:rgba(255,255,255,.65);margin-bottom:9px;text-decoration:none;cursor:pointer;transition:color .2s;}
+.fc a:hover{color:var(--green);}
+.f-bot{border-top:1px solid rgba(255,255,255,.1);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+.f-copy{font-size:12px;color:rgba(255,255,255,.35);}
+.socials{display:flex;gap:12px;}
+.social{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.55);
+  cursor:pointer;transition:all .2s;text-decoration:none;}
+.social:hover{background:var(--green);border-color:var(--green);color:#fff;}
+
+@media(max-width:960px){
+  nav{padding:12px 20px;}
+  .nav-links{gap:14px;}
+  .hero,.about-hdr,.counties,.donate-split,.fg-grid{grid-template-columns:1fr;}
+  .hero-r{min-height:240px;}
+  .sec,.sec-b,.live-grid,.ledger-wrap,.stories-section,.fin-hdr,.impact-hdr,.counties,.about-hdr{padding:48px 20px;}
+  .cards,.vals,.inums,.alloc-row,.stories-grid{grid-template-columns:1fr 1fr;}
+  .tbl-h,.tbl-r{grid-template-columns:90px 1fr 110px;}
+  .tbl-h span:nth-child(4),.tbl-h span:nth-child(5),.td-bal,.td-amt{display:none;}
+  .fband,.hw{grid-template-columns:1fr;}
+  .damts{grid-template-columns:1fr 1fr;}
+  .donate-l,.donate-r{padding:48px 20px;}
+  .founder{grid-template-columns:1fr;}
+  .founder-vis{min-height:180px;}
+  .founder-body{padding:28px;}
+  .pillars{grid-template-columns:1fr;}
+  footer{padding:48px 20px 28px;}
+  .live-grid{grid-template-columns:1fr 1fr;}
+  .progs{}.prog{grid-template-columns:60px 1fr;}.prog-tag{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA+AFUDASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAUGAwQHAQj/xAAqEAABAwMDAwMEAwAAAAAAAAABAAIDBAURBhIhBxNBFCIxMlFhcRVCov/EABkBAQACAwAAAAAAAAAAAAAAAAABAgMEBf/EACgRAAIBAwIEBgMAAAAAAAAAAAABEQISEwMhFDFBkQQVQmFxgaHh8P/aAAwDAQACEQMRAD8A+y0REAREQBERAEREAREQBERAEREARUbrPT325aNnotLSxm6RSxVHZllMcM7GSAvhle0hzWvbkcEfHJAytjpe+/RWqpj1K6KKeorJZ6GmZIHtpqUkCOESYHcLcEl2P7YGQMqMmhZORXTETv8A34nbnsY8tN1pcUULdNWaYtdU6luOoLZSTskEbo5qljXNcWbw0gnglnu/XK8bq7SzppYW6itRfDs7oFWz2b5O2zPPGX+0fc8LJiriYZeUTaKJGpdPG5TW3+bt3rYHhksHqW72OLS/BGeDta4/oFacGutGTx9yHVVlezsSVO4VseO1GcPf8/S3ByfCYq30YlFiRYKOspaxsjqWpinEUjonmN4dtePlpx8EfZZ1RqCQiIgCIiAgrjQzepcI6cvEpOJGYy3Jzh3+h5GCM/BS30U5qWiWAtEZBdK/GXYO7A/XA8DAP4U6i5PlGjlyS/jbty/fua3DU3XFRqenOlJrpcLo+3yurLi90lU81cuJXGOSMEjdgYZK9owBgH8BQcnRzRjmSQCwxMpptgkhirp44/Y57mkNaRgtc9xGPOD4XSkXb4jW6VtfZspUroUKu6YacrLlUXKe3bqmom7khFfO1p3BwkAaDgB4e7eBw7ccrUf0c0XVVXeuNpfUudGYpZJLjUPfMw44eS7LuAG8n6QB4XSEReI16eWo+5LtfpRC6T0za9L0k1LaRVNhmk7hZNUvlAdgDjcTjOBn7nlTSIqVVOpzU5ZEQERFUBERAEREAREQBERAEREAREQH/9k=" alt="Athea Global Foundation">
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('impact')" id="nav-impact">Impact</a></li>
+    <li><a onclick="showPage('finances')" id="nav-finances">Finances</a></li>
+    <li><a onclick="showPage('donate')" id="nav-donate" class="nav-cta">Donate</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-l">
+      <div class="badge"><div class="dot"></div>Non-profit · Kenya · Founded 2021</div>
+      <h1>Change<br>your<br><em>narrative</em></h1>
+      <p class="hero-body">Athea Global Foundation creates awareness, delivers free therapy, and advocates for mental health across Kenya — touching lives in communities that need it most.</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Youth served with free therapy</div></div>
+        <div class="stat"><div class="stat-n">15</div><div class="stat-l">Counties reached across Kenya</div></div>
+        <div class="stat"><div class="stat-n">2021</div><div class="stat-l">Year founded in Nairobi</div></div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn btn-o" onclick="showPage('donate')">Donate Now</button>
+        <button class="btn btn-ghost" onclick="showPage('impact')">Our Impact →</button>
+      </div>
+    </div>
+    <div class="hero-r">
+      <div class="hero-mesh"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <div class="hero-content">
+        <div class="hero-tagline">"Breaking the silence around mental health — one community at a time."</div>
+        <div class="hero-sub">Athea Global Foundation · Nairobi, Kenya</div>
+        <div class="hero-pills"><div class="hpill">🧠 Mental Health</div><div class="hpill">💚 Free Therapy</div><div class="hpill">🌍 Pan-African</div><div class="hpill">🤝 UNICEF Partner</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="lbl">What We Do</div>
+    <div class="ttl">Three ways we're making a <em>difference</em></div>
+    <div class="cards">
+      <div class="card"><div class="card-top ct-g">🧠</div><div class="card-body"><div class="card-tag">Awareness & Advocacy</div><div class="card-name">County Outreach Events</div><div class="card-desc">Mental health awareness events across Kenya's counties — reducing stigma and opening doors to care in communities, schools, and workplaces.</div><div class="card-stat"><div class="csn">15</div><div class="csl">Counties reached across Kenya</div></div></div></div>
+      <div class="card"><div class="card-top ct-o">💚</div><div class="card-body"><div class="card-tag">Free Therapy</div><div class="card-name">On The Mend Project</div><div class="card-desc">Our flagship free therapy programme connects young people with qualified counsellors at zero cost — through Hopewell's licensed professional network.</div><div class="card-stat"><div class="csn">200+</div><div class="csl">Youth received free therapy</div></div></div></div>
+      <div class="card"><div class="card-top ct-n">🤝</div><div class="card-body"><div class="card-tag">UNICEF Partnership</div><div class="card-name">Sema Dada</div><div class="card-desc">A UNICEF-funded project creating awareness among women on mental health and sexual reproductive health rights across Kenya.</div><div class="card-stat"><div class="csn">UNICEF</div><div class="csl">Funded & supported programme</div></div></div></div>
+    </div>
+  </div>
+
+  <div class="counties">
+    <div>
+      <div class="lbl">Our Reach</div>
+      <div class="ttl">15 counties and <em>growing</em></div>
+      <p style="font-size:15px;line-height:1.75;color:rgba(255,255,255,.68);margin-bottom:28px;">From Nairobi to the coast, we're building a mental health movement across Kenya — and soon, across Africa.</p>
+      <button class="btn btn-g" onclick="showPage('impact')">See Full Impact →</button>
+    </div>
+    <div class="cpills"><div class="cpill">Nairobi</div><div class="cpill">Mombasa</div><div class="cpill">Kisumu</div><div class="cpill">Nakuru</div><div class="cpill">Eldoret</div><div class="cpill">Thika</div><div class="cpill">Machakos</div><div class="cpill">Kilifi</div><div class="cpill">Nyeri</div><div class="cpill">Meru</div><div class="cpill">Kakamega</div><div class="cpill">Garissa</div><div class="cpill">Kisii</div><div class="cpill">Embu</div><div class="cpill">Laikipia</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="fband">
+      <div>
+        <h3>Active Fundraiser: KES 100,000</h3>
+        <p>Help us expand free therapy services and reach more Kenyans who need mental health support.</p>
+        <div class="pbar"><div class="pfill" id="home-pfill" style="width:34%"></div></div>
+        <div class="plbl" id="home-plbl">Loading live progress…</div>
+      </div>
+      <a href="https://www.mchanga.africa/fundraiser/123962" target="_blank" class="btn btn-w">Contribute Now</a>
+    </div>
+  </div>
+  <footer>
+    <div class="fg-grid"><div><div class="fb-name">Athea Global Foundation</div><div class="fb-sub">Non-profit arm of Hopewell Counseling · Est. 2021</div><p class="fb-desc">Creating awareness, delivering free therapy, and advocating for mental health across Kenya.</p></div><div class="fc"><h4>Navigate</h4><a onclick="showPage('about')">About</a><a onclick="showPage('impact')">Impact</a><a onclick="showPage('finances')">Finances</a><a onclick="showPage('donate')">Donate</a></div><div class="fc"><h4>Programmes</h4><span>On The Mend</span><span>Sema Dada</span><span>County Events</span><span>Advocacy</span></div><div class="fc"><h4>Connect</h4><a href="https://www.instagram.com/atheaglobalke" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">LinkedIn</a><a href="https://hopewellcounseling.co.ke/" target="_blank">Hopewell Counseling</a></div></div>
+    <div class="f-bot"><p class="f-copy">© 2024 Athea Global Foundation · Kenya</p><div class="socials"><a class="social" href="https://www.instagram.com/atheaglobalke" target="_blank">IG</a><a class="social" href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">in</a><a class="social" href="https://www.mchanga.africa/fundraiser/123962" target="_blank">💚</a></div></div>
+  </footer>
+</div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<div class="page" id="page-about">
+  <div class="about-hdr"><div><div class="lbl">Our Story</div><h2>A foundation built on <em>compassion</em> and community</h2></div><div><p>Founded in 2021, Athea Global Foundation emerged from a deep conviction: that mental health support should not be a luxury. As the non-profit arm of Hopewell Counseling — one of Kenya's leading workplace wellbeing firms — we bring clinical expertise directly into the communities that need it most.</p><br><p style="opacity:.6;font-size:13px;">From free therapy for youth to UNICEF-funded women's health programmes, everything we do is rooted in dignity, evidence, and the belief that every Kenyan deserves to feel well.</p></div></div>
+  <div class="vals"><div class="val"><div class="val-icon">🌱</div><div class="val-name">Community First</div><div class="val-desc">We go where the need is greatest — into counties, schools, and underserved communities across Kenya.</div></div><div class="val"><div class="val-icon">🔬</div><div class="val-name">Evidence-Based</div><div class="val-desc">Every programme draws on clinical best practice, delivered by licensed counsellors and psychologists.</div></div><div class="val"><div class="val-icon">🌍</div><div class="val-name">Pan-African Vision</div><div class="val-desc">We're building a model in Kenya that will scale across East Africa and the continent.</div></div><div class="val"><div class="val-icon">💬</div><div class="val-name">Break the Stigma</div><div class="val-desc">Advocacy and awareness sit at the heart of our work — changing conversations, changing lives.</div></div></div>
+  <div class="sec"><div class="lbl">Our Roots</div><div class="ttl" style="margin-bottom:28px;">Built on a decade of <em>clinical expertise</em></div><div class="founder"><div class="founder-vis">🌿</div><div class="founder-body"><div class="fey">Founded 2021 · Nairobi, Kenya</div><div class="fname">Athea Global Foundation</div><div class="fbio">Athea Global Foundation was established as the non-profit arm of Hopewell Counseling, bringing the same clinical rigour and compassion of the private sector into free community service. We believe mental health advocacy, free therapy, and community education are not charity — they are justice.<br><br>Our team of therapists, counsellors, and advocates are drawn from Hopewell's network of over 87 licensed professionals, ensuring every programme we deliver meets the highest clinical standards.</div></div></div></div>
+  <div class="sec-b"><div class="hw"><div><h3>The Hopewell Connection</h3><p>Athea is the non-profit arm of Hopewell Counseling — Kenya's leading workplace mental health firm. For every 10 sessions purchased by corporate clients, Hopewell funds one free therapy session through Athea for an underserved individual.</p></div><a href="https://hopewellcounseling.co.ke/" target="_blank" class="btn btn-n" style="white-space:nowrap;align-self:center;">Visit Hopewell →</a></div></div>
+  <footer><div class="fg-grid"><div><div class="fb-name">Athea Global Foundation</div><div class="fb-sub">Non-profit arm of Hopewell Counseling · Est. 2021</div><p class="fb-desc">Creating awareness, delivering free therapy, and advocating for mental health across Kenya.</p></div><div class="fc"><h4>Navigate</h4><a onclick="showPage('about')">About</a><a onclick="showPage('impact')">Impact</a><a onclick="showPage('finances')">Finances</a><a onclick="showPage('donate')">Donate</a></div><div class="fc"><h4>Programmes</h4><span>On The Mend</span><span>Sema Dada</span><span>County Events</span><span>Advocacy</span></div><div class="fc"><h4>Connect</h4><a href="https://www.instagram.com/atheaglobalke" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">LinkedIn</a><a href="https://hopewellcounseling.co.ke/" target="_blank">Hopewell Counseling</a></div></div><div class="f-bot"><p class="f-copy">© 2024 Athea Global Foundation · Kenya</p><div class="socials"><a class="social" href="https://www.instagram.com/atheaglobalke" target="_blank">IG</a><a class="social" href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">in</a></div></div></footer>
+</div>
+
+<!-- ═══════════ IMPACT ═══════════ -->
+<div class="page" id="page-impact">
+  <div class="impact-hdr"><div class="lbl">Measurable Change</div><h2>Real people. Real results.</h2><p>Every number represents a life touched, a conversation started, a community strengthened. Here is what your support has made possible since 2021.</p></div>
+  <div class="inums"><div class="inum"><div class="inum-big">200+</div><div class="inum-lbl">Youth who received free therapy through On The Mend</div></div><div class="inum"><div class="inum-big">15</div><div class="inum-lbl">Counties reached with mental health events across Kenya</div></div><div class="inum"><div class="inum-big">3+</div><div class="inum-lbl">Years of community impact since founding in 2021</div></div><div class="inum"><div class="inum-big">1</div><div class="inum-lbl">UNICEF-funded programme delivered for women's health</div></div></div>
+  <div class="sec"><div class="lbl">Our Programmes</div><div class="ttl" style="margin-bottom:36px;">What we've <em>built</em></div><div class="progs"><div class="prog"><div class="prog-n">01</div><div><div class="prog-name">On The Mend</div><div class="prog-desc">Our flagship free therapy programme. On The Mend connects young people aged 15–35 with qualified, licensed counsellors — completely free. Through Hopewell's Sema platform and in-person sessions, we've served over 200 youth who would otherwise have no access to mental health support.</div></div><div class="prog-tag">Athea Core</div></div><div class="prog"><div class="prog-n">02</div><div><div class="prog-name">County Awareness Events</div><div class="prog-desc">We organise mental health awareness events across Kenya's counties — talks, workshops, and public dialogues that reduce stigma and connect community members to services. We've held events in 15 counties and are expanding Africa-wide.</div></div><div class="prog-tag">15 Counties</div></div><div class="prog"><div class="prog-n">03</div><div><div class="prog-name">Sema Dada</div><div class="prog-desc">A UNICEF-funded programme creating awareness among women on mental health and sexual reproductive health rights. Sema Dada — Speak, Sister — reaches women in underserved communities, reducing stigma and connecting them to counselling.</div></div><div class="prog-tag">UNICEF Funded</div></div><div class="prog"><div class="prog-n">04</div><div><div class="prog-name">Mental Health Advocacy</div><div class="prog-desc">Beyond direct service, Athea engages in systemic advocacy for mental health policy, funding, and rights in Kenya — working with government, civil society, and media to push for better infrastructure and destigmatisation.</div></div><div class="prog-tag">Policy & Advocacy</div></div></div></div>
+  <footer><div class="fg-grid"><div><div class="fb-name">Athea Global Foundation</div><div class="fb-sub">Non-profit arm of Hopewell Counseling · Est. 2021</div><p class="fb-desc">Creating awareness, delivering free therapy, and advocating for mental health across Kenya.</p></div><div class="fc"><h4>Navigate</h4><a onclick="showPage('about')">About</a><a onclick="showPage('impact')">Impact</a><a onclick="showPage('finances')">Finances</a><a onclick="showPage('donate')">Donate</a></div><div class="fc"><h4>Programmes</h4><span>On The Mend</span><span>Sema Dada</span><span>County Events</span><span>Advocacy</span></div><div class="fc"><h4>Connect</h4><a href="https://www.instagram.com/atheaglobalke" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">LinkedIn</a><a href="https://hopewellcounseling.co.ke/" target="_blank">Hopewell Counseling</a></div></div><div class="f-bot"><p class="f-copy">© 2024 Athea Global Foundation · Kenya</p><div class="socials"><a class="social" href="https://www.instagram.com/atheaglobalke" target="_blank">IG</a><a class="social" href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">in</a></div></div></footer>
+</div>
+
+<!-- ═══════════ FINANCES ═══════════ -->
+<div class="page" id="page-finances">
+  <div class="fin-hdr">
+    <div class="lbl">Open Ledger · Real-Time</div>
+    <h2>Every shilling. Fully visible.</h2>
+    <p>We update our finances in real time using a shared Google Sheet. Every donation received and every expense paid is logged immediately — so you always know exactly where your money went and what it achieved.</p>
+    <div class="sheet-notice">
+      <div style="font-size:24px;flex-shrink:0;margin-top:2px;">📊</div>
+      <p><strong>Live data from Google Sheets.</strong> Our team logs every transaction as it happens. This page fetches that data fresh each time you visit — no delays, no edits, no spin. <a href="https://docs.google.com/spreadsheets" target="_blank">View the raw spreadsheet →</a></p>
+    </div>
+  </div>
+
+  <!-- LIVE DASHBOARD -->
+  <div class="live-grid">
+    <div class="dc green">
+      <div class="dc-lbl lt">Total Raised (2024)</div>
+      <div class="dc-big lt" id="d-income">KES —</div>
+      <div class="dc-sub lt" id="d-income-n">Loading…</div>
+      <div class="live-badge lt"><div class="ldot lt"></div>Live</div>
+    </div>
+    <div class="dc navy">
+      <div class="dc-lbl lt">Total Spent (2024)</div>
+      <div class="dc-big lt" id="d-spent">KES —</div>
+      <div class="dc-sub lt" id="d-spent-n">Loading…</div>
+      <div class="live-badge lt"><div class="ldot lt"></div>Live</div>
+    </div>
+    <div class="dc">
+      <div class="dc-lbl dk">Current Balance</div>
+      <div class="dc-big dk" id="d-bal">KES —</div>
+      <div class="dc-sub dk" id="d-bal-n">Loading…</div>
+    </div>
+    <div class="dc orange">
+      <div class="dc-lbl lt">Fundraiser Progress</div>
+      <div class="dc-big lt" id="d-pct">—%</div>
+      <div class="mini-pbar lt"><div class="pfill" id="d-pfill" style="width:0%"></div></div>
+      <div class="dc-sub lt" id="d-camp-lbl">of KES 100,000 goal</div>
+      <div class="live-badge lt"><div class="ldot lt"></div>Live</div>
+    </div>
+
+    <!-- Allocation breakdown – full width -->
+    <div class="dc full">
+      <div class="dc-lbl dk">How funds are allocated</div>
+      <div class="alloc-row" id="alloc-row">
+        <div class="alloc-item"><div class="alloc-head"><span class="alloc-name">Direct Programmes</span><span class="alloc-pct" style="color:var(--green)">—</span></div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="background:var(--green);width:0%"></div></div><div class="alloc-note">On The Mend, Sema Dada</div></div>
+        <div class="alloc-item"><div class="alloc-head"><span class="alloc-name">Events</span><span class="alloc-pct" style="color:var(--orange)">—</span></div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="background:var(--orange);width:0%"></div></div><div class="alloc-note">County outreach delivery</div></div>
+        <div class="alloc-item"><div class="alloc-head"><span class="alloc-name">Administration</span><span class="alloc-pct" style="color:var(--navy)">—</span></div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="background:var(--navy);width:0%"></div></div><div class="alloc-note">Coordination, compliance</div></div>
+        <div class="alloc-item"><div class="alloc-head"><span class="alloc-name">Advocacy & Comms</span><span class="alloc-pct" style="color:#5B21B6">—</span></div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="background:#5B21B6;width:0%"></div></div><div class="alloc-note">Policy, awareness campaigns</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORIES FEED -->
+  <div class="stories-section">
+    <div class="lbl">Impact Stories</div>
+    <div class="ttl">When a session is completed, <em>you'll know</em></div>
+    <div class="stories-grid" id="stories-grid">
+      <div class="loading-box"><div class="spinner"></div><br>Loading stories…</div>
+    </div>
+  </div>
+
+  <!-- LEDGER -->
+  <div class="ledger-wrap">
+    <div class="ledger-top">
+      <div class="ledger-ttl">Transaction Ledger</div>
+      <div class="filters">
+        <button class="fb on" onclick="filterTx('all',this)">All</button>
+        <button class="fb" onclick="filterTx('income',this)">Income</button>
+        <button class="fb" onclick="filterTx('programme',this)">Programmes</button>
+        <button class="fb" onclick="filterTx('events',this)">Events</button>
+        <button class="fb" onclick="filterTx('operations',this)">Operations</button>
+      </div>
+    </div>
+    <div class="tbl">
+      <div class="tbl-h"><span>Date</span><span>Description</span><span>Category</span><span>Amount (KES)</span><span>Balance</span></div>
+      <div id="tx-body"><div class="loading-box"><div class="spinner"></div><br>Fetching live data from Google Sheet…</div></div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar-icon">📋</div><div><div class="pillar-name">Open Ledger</div><div class="pillar-desc">Every income and expense is logged the moment it occurs. No batching. No delays. Real entries only.</div></div>
+    </div>
+  </div>
+
+  <div class="ledger-wrap" style="padding-top:0;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:28px;">
+      <div style="background:var(--navy);border-radius:20px;padding:32px;"><div style="font-size:22px;margin-bottom:12px;">📋</div><div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Open Ledger</div><div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;">Every income and expense logged as it happens. No batching. No delays.</div></div>
+      <div style="background:var(--navy);border-radius:20px;padding:32px;"><div style="font-size:22px;margin-bottom:12px;">🔄</div><div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Updated in Real Time</div><div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;">Our team updates the Google Sheet directly. This page fetches fresh data every visit.</div></div>
+      <div style="background:var(--navy);border-radius:20px;padding:32px;"><div style="font-size:22px;margin-bottom:12px;">🎯</div><div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Programme-Level Tracking</div><div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;">Every expense is tagged to a specific programme — see exactly where your donation went.</div></div>
+    </div>
+    <div class="fband">
+      <div>
+        <h3>Current Fundraiser: KES 100,000</h3>
+        <p>Expanding On The Mend to 50 additional youth across 3 new counties in 2025.</p>
+        <div class="pbar"><div class="pfill" id="fin-pfill" style="width:0%"></div></div>
+        <div class="plbl" id="fin-plbl">Donate now and watch your contribution appear in this ledger within 24 hours</div>
+      </div>
+      <a href="https://www.mchanga.africa/fundraiser/123962" target="_blank" class="btn btn-w">Donate via M-Changa →</a>
+    </div>
+  </div>
+
+  <footer><div class="fg-grid"><div><div class="fb-name">Athea Global Foundation</div><div class="fb-sub">Non-profit arm of Hopewell Counseling · Est. 2021</div><p class="fb-desc">Creating awareness, delivering free therapy, and advocating for mental health across Kenya.</p></div><div class="fc"><h4>Navigate</h4><a onclick="showPage('about')">About</a><a onclick="showPage('impact')">Impact</a><a onclick="showPage('finances')">Finances</a><a onclick="showPage('donate')">Donate</a></div><div class="fc"><h4>Programmes</h4><span>On The Mend</span><span>Sema Dada</span><span>County Events</span><span>Advocacy</span></div><div class="fc"><h4>Connect</h4><a href="https://www.instagram.com/atheaglobalke" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">LinkedIn</a><a href="https://hopewellcounseling.co.ke/" target="_blank">Hopewell Counseling</a></div></div><div class="f-bot"><p class="f-copy">© 2024 Athea Global Foundation · Kenya</p><div class="socials"><a class="social" href="https://www.instagram.com/atheaglobalke" target="_blank">IG</a><a class="social" href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">in</a></div></div></footer>
+</div>
+
+<!-- ═══════════ DONATE ═══════════ -->
+<div class="page" id="page-donate">
+  <div class="donate-split">
+    <div class="donate-l">
+      <div class="lbl">Give Today</div>
+      <h2>Your gift changes lives in Kenya</h2>
+      <p>Every contribution goes directly to our programmes. And you'll be able to watch — in real time — exactly where it goes.</p>
+      <ul class="ilist">
+        <li>KES 1,000 funds one free therapy session for a young person</li>
+        <li>KES 5,000 sponsors a mental health workshop in a county school</li>
+        <li>KES 20,000 covers travel & facilitation for a county outreach event</li>
+        <li>KES 50,000 sponsors a full Sema Dada community session</li>
+      </ul>
+      <div class="ledger-teaser">
+        <div style="font-size:10px;opacity:.5;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">After you donate</div>
+        <div style="font-size:14px;opacity:.82;line-height:1.6;">Your contribution appears in our <strong style="color:var(--green);">open ledger</strong> on the Finances page — tagged to the programme it funds. You'll also see an <strong style="color:var(--green);">impact story</strong> when the funds are deployed.</div>
+      </div>
+    </div>
+    <div class="donate-r">
+      <h3>Choose your impact</h3>
+      <div class="damts">
+        <div class="da on" onclick="pickAmt(this,1000)"><div class="da-a">1K</div><div class="da-l">1 therapy session</div></div>
+        <div class="da" onclick="pickAmt(this,5000)"><div class="da-a">5K</div><div class="da-l">School workshop</div></div>
+        <div class="da" onclick="pickAmt(this,10000)"><div class="da-a">10K</div><div class="da-l">10 free sessions</div></div>
+        <div class="da" onclick="pickAmt(this,20000)"><div class="da-a">20K</div><div class="da-l">County event</div></div>
+        <div class="da" onclick="pickAmt(this,50000)"><div class="da-a">50K</div><div class="da-l">Sema Dada session</div></div>
+        <div class="da" onclick="pickAmt(this,0)"><div class="da-a">Other</div><div class="da-l">Choose amount</div></div>
+      </div>
+      <div class="form">
+        <div class="fg"><label class="fl">Your Name</label><input class="fi" type="text" placeholder="Jane Wanjiku"></div>
+        <div class="fg"><label class="fl">Email Address</label><input class="fi" type="email" placeholder="jane@example.com"></div>
+        <div class="fg"><label class="fl">Amount (KES)</label><input class="fi" type="number" id="amt-input" placeholder="1,000" value="1000"></div>
+      </div>
+      <div class="d-redirect">
+        <p>We process donations through <strong>M-Changa</strong> — Kenya's trusted fundraising platform. You'll be redirected to complete your gift securely.</p>
+        <a href="https://www.mchanga.africa/fundraiser/123962" target="_blank" class="btn btn-o" style="width:100%;display:block;padding:15px;">Donate via M-Changa →</a>
+      </div>
+      <p style="font-size:12px;color:var(--mid);text-align:center;margin-top:-6px;">Secure · Transparent · Every shilling tracked in our open ledger</p>
+    </div>
+  </div>
+  <footer><div class="fg-grid"><div><div class="fb-name">Athea Global Foundation</div><div class="fb-sub">Non-profit arm of Hopewell Counseling · Est. 2021</div><p class="fb-desc">Creating awareness, delivering free therapy, and advocating for mental health across Kenya.</p></div><div class="fc"><h4>Navigate</h4><a onclick="showPage('about')">About</a><a onclick="showPage('impact')">Impact</a><a onclick="showPage('finances')">Finances</a><a onclick="showPage('donate')">Donate</a></div><div class="fc"><h4>Programmes</h4><span>On The Mend</span><span>Sema Dada</span><span>County Events</span><span>Advocacy</span></div><div class="fc"><h4>Connect</h4><a href="https://www.instagram.com/atheaglobalke" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">LinkedIn</a><a href="https://hopewellcounseling.co.ke/" target="_blank">Hopewell Counseling</a></div></div><div class="f-bot"><p class="f-copy">© 2024 Athea Global Foundation · Kenya</p><div class="socials"><a class="social" href="https://www.instagram.com/atheaglobalke" target="_blank">IG</a><a class="social" href="https://www.linkedin.com/company/savannah-foundation-6/" target="_blank">in</a></div></div></footer>
+</div>
+
+<!-- ═══════════ JS ═══════════ -->
+<script>
+// ─── CONFIGURATION ───────────────────────────────────────────────────────────
+// STEP 1: Create two Google Sheets tabs:
+//   Tab 1 "Transactions" columns: Date | Description | Category | Amount | Type
+//     Category: programme / events / operations / income
+//     Type: income OR expense
+//   Tab 2 "Stories" columns: Date | Programme | Title | Story | Icon | Amount
+// STEP 2: File → Share → Publish to web → each tab as CSV
+// STEP 3: Paste the published CSV URLs below
+
+const TRANSACTIONS_CSV = "YOUR_TRANSACTIONS_CSV_URL";
+// e.g. "https://docs.google.com/spreadsheets/d/SHEET_ID/export?format=csv&gid=0"
+
+const STORIES_CSV = "YOUR_STORIES_CSV_URL";
+// e.g. "https://docs.google.com/spreadsheets/d/SHEET_ID/export?format=csv&gid=123456"
+
+const CAMPAIGN_GOAL = 100000;
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Demo data — shown automatically until you connect a real sheet
+const DEMO_TX = [
+  {date:"2024-12-01",desc:"M-Changa Campaign Donations",cat:"income",amount:34000,credit:true},
+  {date:"2024-11-15",desc:"On The Mend — Therapy Sessions (November)",cat:"programme",amount:18000,credit:false},
+  {date:"2024-11-10",desc:"Hopewell CSR Corporate Transfer",cat:"income",amount:45000,credit:true},
+  {date:"2024-11-05",desc:"Nakuru County Event — Venue & Facilitation",cat:"events",amount:22000,credit:false},
+  {date:"2024-10-28",desc:"UNICEF Sema Dada Grant (Q4 Tranche)",cat:"income",amount:150000,credit:true},
+  {date:"2024-10-20",desc:"Sema Dada Programme Delivery",cat:"programme",amount:85000,credit:false},
+  {date:"2024-10-12",desc:"Kilifi County Mental Health Workshop",cat:"events",amount:19500,credit:false},
+  {date:"2024-10-01",desc:"Individual Donor",cat:"income",amount:10000,credit:true},
+  {date:"2024-09-25",desc:"On The Mend — Therapy Sessions (October)",cat:"programme",amount:21000,credit:false},
+  {date:"2024-09-15",desc:"Mombasa County Outreach Event",cat:"events",amount:28000,credit:false},
+  {date:"2024-09-10",desc:"Hopewell Corporate Partnership Q3",cat:"income",amount:80000,credit:true},
+  {date:"2024-09-01",desc:"Administration & Compliance Q3",cat:"operations",amount:15000,credit:false},
+  {date:"2024-08-20",desc:"On The Mend — Therapy Sessions (September)",cat:"programme",amount:17500,credit:false},
+  {date:"2024-08-10",desc:"Individual Donors (August)",cat:"income",amount:22500,credit:true},
+  {date:"2024-08-05",desc:"Kisumu County Event — Travel & Materials",cat:"events",amount:14500,credit:false},
+  {date:"2024-07-30",desc:"Advocacy Campaign — Media & Outreach",cat:"operations",amount:8200,credit:false},
+  {date:"2024-07-15",desc:"UNICEF Sema Dada Grant (Q3 Tranche)",cat:"income",amount:146000,credit:true},
+  {date:"2024-07-01",desc:"On The Mend — Therapy Sessions (August)",cat:"programme",amount:14700,credit:false},
+];
+
+const DEMO_STORIES = [
+  {date:"Dec 2024",programme:"On The Mend",progClass:"o",title:"Nairobi: 5 sessions completed this week",story:"Five young people in Nairobi's Eastlands accessed free therapy this week through On The Mend. Sessions covered anxiety management, grief, and career stress. All five reported feeling significantly better after their first session.",icon:"💚",amount:"KES 5,000 deployed"},
+  {date:"Nov 2024",programme:"Sema Dada",progClass:"n",title:"Kisumu workshop reaches 40 women",story:"Our Sema Dada facilitators held a full-day workshop in Kisumu reaching 40 women — covering mental health basics, stress recognition, and sexual reproductive health rights. 12 women were connected to local counselling services.",icon:"🤝",amount:"KES 22,000 deployed"},
+  {date:"Nov 2024",programme:"County Events",progClass:"g",title:"Nakuru mental health awareness day",story:"Our biggest county event yet. Over 200 community members attended our mental health awareness day in Nakuru town — including teachers, healthcare workers, and local leaders. Stigma reduction talks received standing ovations.",icon:"🧠",amount:"KES 19,500 deployed"},
+];
+
+let allTx = [];
+let currentFilter = "all";
+
+// ─── PAGE ROUTER ──────────────────────────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const n = document.getElementById('nav-' + name);
+  if (n) n.classList.add('active');
+  window.scrollTo(0, 0);
+  if (name === 'finances') loadFinances();
+}
+
+// ─── DONATE ───────────────────────────────────────────────────────────────────
+function pickAmt(el, amt) {
+  document.querySelectorAll('.da').forEach(d => d.classList.remove('on'));
+  el.classList.add('on');
+  if (amt > 0) document.getElementById('amt-input').value = amt;
+}
+
+// ─── FINANCES ─────────────────────────────────────────────────────────────────
+async function loadFinances() {
+  let txData = [], storyData = [], isLive = false;
+
+  // Try fetching live data
+  if (TRANSACTIONS_CSV && !TRANSACTIONS_CSV.startsWith('YOUR')) {
+    try {
+      const r = await fetch(TRANSACTIONS_CSV);
+      const csv = await r.text();
+      txData = parseTransactionCSV(csv);
+      isLive = true;
+    } catch(e) { console.warn('TX fetch failed, using demo', e); txData = DEMO_TX; }
+  } else { txData = DEMO_TX; }
+
+  if (STORIES_CSV && !STORIES_CSV.startsWith('YOUR')) {
+    try {
+      const r = await fetch(STORIES_CSV);
+      const csv = await r.text();
+      storyData = parseStoriesCSV(csv);
+    } catch(e) { console.warn('Stories fetch failed, using demo', e); storyData = DEMO_STORIES; }
+  } else { storyData = DEMO_STORIES; }
+
+  allTx = txData;
+  updateDashboard(txData);
+  renderAlloc(txData);
+  renderStories(storyData);
+  renderTx(txData);
+}
+
+function parseTransactionCSV(csv) {
+  return csv.trim().split('\n').slice(1).map(line => {
+    const c = splitCSVLine(line);
+    const amount = Math.abs(parseFloat((c[3]||'').replace(/,/g,'')) || 0);
+    const type = (c[4]||'').trim().toLowerCase();
+    const credit = type === 'income';
+    const cat = (c[2]||'').trim().toLowerCase() || 'other';
+    return { date:(c[0]||'').trim(), desc:(c[1]||'').trim(), cat, amount, credit };
+  }).filter(r => r.desc && r.amount > 0);
+}
+
+function parseStoriesCSV(csv) {
+  return csv.trim().split('\n').slice(1).map(line => {
+    const c = splitCSVLine(line);
+    return { date:(c[0]||'').trim(), programme:(c[1]||'').trim(), progClass:(c[2]||'g').trim(), title:(c[3]||'').trim(), story:(c[4]||'').trim(), icon:(c[5]||'💚').trim(), amount:(c[6]||'').trim() };
+  }).filter(r => r.title);
+}
+
+function splitCSVLine(line) {
+  const result = []; let cur = ''; let inQ = false;
+  for (let ch of line) { if (ch === '"') { inQ = !inQ; } else if (ch === ',' && !inQ) { result.push(cur); cur = ''; } else { cur += ch; } }
+  result.push(cur); return result;
+}
+
+function updateDashboard(data) {
+  const income = data.filter(t => t.credit).reduce((s,t) => s+t.amount, 0);
+  const spent = data.filter(t => !t.credit).reduce((s,t) => s+t.amount, 0);
+  const bal = income - spent;
+  // Fundraiser: sum income tagged as income (or override with M-Changa known value)
+  const campaignRaised = data.filter(t => t.credit && t.cat === 'income').reduce((s,t) => s+t.amount, 0);
+  const pct = Math.min(100, Math.round((campaignRaised / CAMPAIGN_GOAL) * 100));
+
+  document.getElementById('d-income').textContent = 'KES ' + income.toLocaleString();
+  document.getElementById('d-spent').textContent = 'KES ' + spent.toLocaleString();
+  document.getElementById('d-bal').textContent = 'KES ' + bal.toLocaleString();
+  document.getElementById('d-income-n').textContent = data.filter(t=>t.credit).length + ' transactions';
+  document.getElementById('d-spent-n').textContent = data.filter(t=>!t.credit).length + ' transactions';
+  document.getElementById('d-bal-n').textContent = 'Reserved for upcoming programmes';
+  document.getElementById('d-pct').textContent = pct + '%';
+  document.getElementById('d-pfill').style.width = pct + '%';
+  document.getElementById('d-camp-lbl').textContent = 'KES ' + campaignRaised.toLocaleString() + ' of KES ' + CAMPAIGN_GOAL.toLocaleString() + ' goal';
+  // Also update home page progress
+  const hp = document.getElementById('home-pfill');
+  const hpl = document.getElementById('home-plbl');
+  if(hp) { hp.style.width = pct+'%'; }
+  if(hpl) hpl.textContent = pct+'% raised · KES '+campaignRaised.toLocaleString()+' of KES '+CAMPAIGN_GOAL.toLocaleString()+' · M-Changa';
+  // Finance page progress bar
+  const fp = document.getElementById('fin-pfill');
+  if(fp) fp.style.width = pct+'%';
+  const fpl = document.getElementById('fin-plbl');
+  if(fpl) fpl.textContent = pct+'% raised · Donate now and watch your contribution appear in this ledger within 24 hours';
+}
+
+function renderAlloc(data) {
+  const expenses = data.filter(t => !t.credit);
+  const total = expenses.reduce((s,t) => s+t.amount, 0) || 1;
+  const cats = { programme:0, events:0, operations:0, other:0 };
+  expenses.forEach(t => {
+    if (cats[t.cat] !== undefined) cats[t.cat] += t.amount;
+    else cats.other += t.amount;
+  });
+  const items = document.querySelectorAll('#alloc-row .alloc-item');
+  const catKeys = ['programme','events','operations','other'];
+  const colors = [getComputedStyle(document.documentElement).getPropertyValue('--green').trim(),
+                  getComputedStyle(document.documentElement).getPropertyValue('--orange').trim(),
+                  getComputedStyle(document.documentElement).getPropertyValue('--navy').trim(),'#5B21B6'];
+  catKeys.forEach((k,i) => {
+    if(!items[i]) return;
+    const pct = Math.round((cats[k]/total)*100);
+    items[i].querySelector('.alloc-pct').textContent = pct+'%';
+    items[i].querySelector('.alloc-bar-fill').style.width = pct+'%';
+  });
+}
+
+function renderStories(stories) {
+  const grid = document.getElementById('stories-grid');
+  if(!stories.length) { grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--mid);">No stories yet — add them to the Stories tab in your Google Sheet.</div>'; return; }
+  grid.innerHTML = stories.map(s => `
+    <div class="story-card">
+      <div class="story-top">
+        <div class="story-icon">${s.icon}</div>
+        <div class="story-date">${s.date}</div>
+      </div>
+      <div class="story-body">
+        <div class="story-prog ${s.progClass}">${s.programme}</div>
+        <div class="story-title">${s.title}</div>
+        <div class="story-text">${s.story}</div>
+        ${s.amount ? `<div class="story-amount">💸 ${s.amount}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function fmtDate(d) {
+  try { const dt=new Date(d); return dt.toLocaleDateString('en-KE',{day:'2-digit',month:'short',year:'numeric'}); }
+  catch { return d; }
+}
+function catLabel(c) { return {income:'Income',programme:'Programme',events:'Events',operations:'Operations'}[c]||c; }
+function catClass(c) { return {income:'ci',programme:'cp',events:'ce',operations:'co'}[c]||'ci'; }
+
+function renderTx(data) {
+  const body = document.getElementById('tx-body');
+  if(!data.length) { body.innerHTML='<div class="loading-box">No transactions found.</div>'; return; }
+  let bal = data.filter(t=>t.credit).reduce((s,t)=>s+t.amount,0) - data.filter(t=>!t.credit).reduce((s,t)=>s+t.amount,0);
+  body.innerHTML = data.map(t => {
+    const b = bal; bal = t.credit ? bal-t.amount : bal+t.amount;
+    return `<div class="tbl-r" data-cat="${t.cat}">
+      <div class="td-date">${fmtDate(t.date)}</div>
+      <div class="td-desc">${t.desc}</div>
+      <div><span class="tcat ${catClass(t.cat)}">${catLabel(t.cat)}</span></div>
+      <div class="td-amt ${t.credit?'credit':'debit'}">${t.credit?'+':'−'} ${t.amount.toLocaleString()}</div>
+      <div class="td-bal">${b.toLocaleString()}</div>
+    </div>`;
+  }).join('');
+}
+
+function filterTx(filter, btn) {
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderTx(filter==='all' ? allTx : allTx.filter(t => t.cat===filter));
+}
+
+// Load home progress on start
+window.addEventListener('DOMContentLoaded', () => {
+  // Set demo progress on home page immediately
+  const hp = document.getElementById('home-pfill');
+  const hpl = document.getElementById('home-plbl');
+  if(hp) hp.style.width = '34%';
+  if(hpl) hpl.textContent = '34% raised · KES 34,000 of KES 100,000 · M-Changa';
+});
+</script>
+</body>
+</html>
