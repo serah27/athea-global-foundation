@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athea Global Foundation | Change Your Narrative</title>
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2C5F7E;      /* Calm, trustworthy blue */
+            --primary-light: #4A7C9A;
+            --secondary: #E8B86B;     /* Warm, hopeful amber */
+            --accent: #C44545;        /* Gentle urgency for CTAs */
+            --neutral-100: #FFFFFF;
+            --neutral-200: #F8F5F0;   /* Warm white */
+            --neutral-300: #E5E0D8;
+            --neutral-600: #6B6B6B;
+            --neutral-800: #2D2D2D;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --font-serif: 'Georgia', 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--neutral-800);
+            line-height: 1.6;
+            background-color: var(--neutral-200);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 2rem; position: relative; }
+        h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== UTILITIES ===== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #a33a3a;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-light {
+            background-color: var(--neutral-100);
+        }
+
+        .section-dark {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .section-warm {
+            background-color: var(--neutral-200);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background-color: var(--neutral-100);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--neutral-600);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--neutral-800);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .donate-btn-nav {
+            background-color: var(--accent);
+            color: white !important;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+        }
+
+        .donate-btn-nav:hover {
+            background-color: #a33a3a;
+            color: white !important;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 80vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://via.placeholder.com/1920x1080/2C5F7E/FFFFFF?text=Athea+Global+Foundation') center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        /* ===== STATS BANNER ===== */
+        .stats-banner {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ===== APPROACH GRID ===== */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .approach-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .approach-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .approach-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .approach-card h3 {
+            color: var(--primary);
+        }
+
+        .approach-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ===== TRANSPARENCY HIGHLIGHT ===== */
+        .transparency-box {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .transparency-box h2 {
+            color: white;
+        }
+
+        .transparency-box .btn-outline {
+            border-color: white;
+            color: white;
+        }
+
+        .transparency-box .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* ===== STORY FEATURE ===== */
+        .story-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .story-image {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            height: 400px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .story-content h3 {
+            color: var(--primary);
+        }
+
+        .story-meta {
+            color: var(--neutral-600);
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        /* ===== FUNDRAISER CARD ===== */
+        .fundraiser-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background-color: var(--neutral-300);
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 34%;
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 6px;
+        }
+
+        .fundraiser-stats {
+            display: flex;
+            justify-content: space-between;
+            color: var(--neutral-600);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== PROGRAMS GRID ===== */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .program-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .program-content {
+            padding: 1.5rem;
+        }
+
+        .program-tag {
+            display: inline-block;
+            background-color: var(--secondary);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-cost {
+            font-weight: 600;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        /* ===== LIVE LEDGER PREVIEW ===== */
+        .ledger-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .ledger-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+        }
+
+        .ledger-table th {
+            text-align: left;
+            padding: 1rem;
+            background-color: var(--neutral-200);
+            color: var(--neutral-800);
+        }
+
+        .ledger-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--neutral-300);
+        }
+
+        .ledger-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .impact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ===== PARTNERS SECTION ===== */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .partner-logo {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary);
+            border: 1px solid var(--neutral-300);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--neutral-800);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .hero {
+                height: auto;
+                padding: 4rem 0;
+            }
+            
+            .hero h1 { font-size: 2.5rem; }
+            
+            .stats-grid,
+            .approach-grid,
+            .programs-grid,
+            .partners-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-feature {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h2>ATHEA GLOBAL</h2>
+                <span>Change Your Narrative</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#story">Our Story</a>
+                <a href="#programs">Programs</a>
+                <a href="#impact">Impact & Finances</a>
+                <a href="#involved">Get Involved</a>
+                <a href="#stories">Stories</a>
+                <a href="#donate" class="donate-btn-nav">Donate</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Mental health care should not be a luxury.</h1>
+            <p>We're making it a right—through free therapy, community advocacy, and radical transparency. Based in Kenya. Built on clinical expertise.</p>
+            <div class="hero-buttons">
+                <a href="https://www.mchanga.africa/fundraiser/123962" class="btn btn-primary">Donate Now – Fund a Session</a>
+                <a href="#impact" class="btn btn-secondary">See Our Live Impact</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS BANNER -->
+    <section class="stats-banner">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Young people reached with free therapy (since 2021)</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15</h3>
+                    <p>Counties reached across Kenya</p>
+                </div>
+                <div class="stat-item">
+                    <h3>9</h3>
+                    <p>Counties completed (Sema Dada w/ UNICEF)</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1000+</h3>
+                    <p>Emergency responders & survivors supported</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR APPROACH -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>How we create change.</h2>
+            <div class="approach-grid">
+                <div class="approach-card">
+                    <div class="approach-icon">🧠</div>
+                    <h3>Free Therapy</h3>
+                    <p>We connect young people with qualified counselors—completely free. Our flagship program, On The Mend, has served over 500 youth since 2021.</p>
+                    <a href="#programs" class="approach-link">Learn about On The Mend →</a>
+                </div>
+                <div class="approach-card">
+                    <div class="approach-icon">🌍</div>
+                    <h3>Community & Advocacy</h3>
+                    <p>We go where the need is greatest. Through county outreach events and partnerships, we reduce stigma and connect communities to care—from Nairobi to Samburu.</p>
+                    <a href="#programs" class="approach-link">See where we work →</a>
+                </div>
+                <div class="approach-card">
+                    <div class="approach-icon">💚</div>
+                    <h3>Emergency Response</h3>
+                    <p>When crisis hits, we respond. During the 2024 floods, our Mindful Tide project provided psychological first aid and debriefing to survivors and first responders.</p>
+                    <a href="#stories" class="approach-link">Read the Mai Mahiu story →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RADICAL TRANSPARENCY HIGHLIGHT -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="transparency-box">
+                <h2>You deserve to know exactly where your money goes.</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 800px;">We publish every single transaction—every donation received, every expense paid—in a live, public Google Sheet. No delays. No spin. Just real-time accountability. When you give to Athea, you can watch your contribution appear in our ledger within 24 hours and see exactly what it funded.</p>
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--secondary);">
+                        <span>Latest Donation: KES 1,000</span>
+                        <span>Funded 1 therapy session</span>
+                        <span>2 mins ago</span>
+                    </div>
+                    <div style="height: 2px; background: rgba(255,255,255,0.2); margin: 1rem 0;"></div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span>Latest Expense: KES 5,000</span>
+                        <span>Debriefing - Mai Mahiu CHPs</span>
+                        <span>Yesterday</span>
+                    </div>
+                </div>
+                <a href="#impact" class="btn btn-outline">View the Live Ledger →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED STORY: MAI MAHIU -->
+    <section id="stories" class="section section-warm">
+        <div class="container">
+            <div class="story-feature">
+                <div class="story-image">
+                    [Photo: Mai Mahiu debrief session]
+                </div>
+                <div class="story-content">
+                    <h3>"We had never received support before."</h3>
+                    <p class="story-meta">Community Health Promoters, Mai Mahiu</p>
+                    <p style="margin-bottom: 1.5rem;">After the April floods devastated Mai Mahiu, Community Health Promoters worked tirelessly—traumatized, burned out, and overlooked. In October, we finally gave them a space to debrief. "We are so grateful," one said. "We feel seen."</p>
+                    <a href="#mai-mahiu-full" class="btn btn-outline">Read the full report →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRENT FUNDRAISER -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="fundraiser-card">
+                <h3 style="color: var(--primary);">Help us expand On The Mend to 50 more youth in 2025.</h3>
+                <div class="fundraiser-stats">
+                    <span>KES 34,000 raised</span>
+                    <span>Goal: KES 100,000</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p style="margin-bottom: 1.5rem;">34% funded · Every KES 1,000 funds one therapy session</p>
+                <a href="https://www.mchanga.africa/fundraiser/123962" class="btn btn-primary" style="width: 100%; text-align: center;">Donate via M-Changa</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR PROGRAMS -->
+    <section id="programs" class="section section-warm">
+        <div class="container">
+            <h2>What we've built.</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-image">[On The Mend]</div>
+                    <div class="program-content">
+                        <span class="program-tag">Flagship</span>
+                        <h3>On The Mend</h3>
+                        <p>8 weeks of free therapy + aftercare for young people (15-35). Over 500 youth served since 2021.</p>
+                        <p class="program-cost">KES 1,000 = 1 session · KES 10,000 = full course</p>
+                        <a href="https://www.mchanga.africa/fundraiser/123962" class="approach-link">Donate to Restart →</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">[Sema Dada]</div>
+                    <div class="program-content">
+                        <span class="program-tag">UNICEF Partner</span>
+                        <h3>Sema Dada</h3>
+                        <p>Creating awareness for women and girls on harmful practices and mental health. 9 counties completed.</p>
+                        <p class="program-cost">KES 50,000 sponsors a community session</p>
+                        <a href="https://www.mchanga.africa/fundraiser/123962" class="approach-link">Support a Women's Circle →</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">[Mindful Tide]</div>
+                    <div class="program-content">
+                        <span class="program-tag">Emergency Response</span>
+                        <h3>Mindful Tide</h3>
+                        <p>Rapid psychosocial support for disaster-affected communities. 1000+ reached in 2024 floods.</p>
+                        <p class="program-cost">KES 20,000 funds a debriefing session</p>
+                        <a href="https://www.mchanga.africa/fundraiser/123962" class="approach-link">Fund Emergency Capacity →</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">[Fountain of Hope]</div>
+                    <div class="program-content">
+                        <span class="program-tag">Children's Support</span>
+                        <h3>Fountain of Hope</h3>
+                        <p>Long-term mental health support for 40 vulnerable children in Limuru.</p>
+                        <p class="program-cost">Ongoing support needed</p>
+                        <a href="https://www.mchanga.africa/fundraiser/123962" class="approach-link">Sponsor a Child's Therapy →</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">[County Outreach]</div>
+                    <div class="program-content">
+                        <span class="program-tag">Advocacy</span>
+                        <h3>County Outreach</h3>
+                        <p>Mental health awareness events across 15 counties. Reducing stigma, connecting communities.</p>
+                        <p class="program-cost">KES 5,000 = school workshop · KES 20,000 = county event</p>
+                        <a href="https://www.mchanga.africa/fundraiser/123962" class="approach-link">Fund an Outreach Event →</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">[Practicum]</div>
+                    <div class="program-content">
+                        <span class="program-tag">Sustainable</span>
+                        <h3>Practicum Program</h3>
+                        <p>Psychology interns earn their hours by serving our beneficiaries. Building the next generation.</p>
+                        <p class="program-cost">Support our internship pipeline</p>
+                        <a href="https://www.mchanga.africa/fundraiser/123962" class="approach-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT & FINANCES: LIVE LEDGER -->
+    <section id="impact" class="section section-light">
+        <div class="container">
+            <h2>Every shilling. Fully visible.</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 3rem; max-width: 800px;">We publish every transaction in real time. No delays. No spin. Just radical accountability.</p>
+            
+            <!-- Live Dashboard Preview -->
+            <div class="ledger-preview">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: var(--neutral-200); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 0.9rem; color: var(--neutral-600);">Total Raised (2025)</div>
+                        <div style="font-size: 2rem; font-weight: 600; color: var(--primary);">KES 124,500</div>
+                    </div>
+                    <div style="background: var(--neutral-200); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 0.9rem; color: var(--neutral-600);">Program Spending</div>
+                        <div style="font-size: 2rem; font-weight: 600; color: var(--primary);">KES 89,200</div>
+                    </div>
+                    <div style="background: var(--neutral-200); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 0.9rem; color: var(--neutral-600);">Current Balance</div>
+                        <div style="font-size: 2rem; font-weight: 600; color: var(--primary);">KES 35,300</div>
+                    </div>
+                    <div style="background: var(--neutral-200); padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 0.9rem; color: var(--neutral-600);">Fundraiser Progress</div>
+                        <div style="font-size: 2rem; font-weight: 600; color: var(--primary);">34%</div>
+                    </div>
+                </div>
+
+                <!-- Live Transaction Ledger -->
+                <h3 style="margin-bottom: 1.5rem;">Recent Transactions</h3>
+                <table class="ledger-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount (KES)</th>
+                            <th>Balance</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-10-15</td>
+                            <td>Debriefing Session - Mai Mahiu CHPs</td>
+                            <td>Programme</td>
+                            <td>-5,000</td>
+                            <td>35,300</td>
+                            <td><a href="#mai-mahiu" class="impact-link">See impact →</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-14</td>
+                            <td>Donation - John D., Nairobi</td>
+                            <td>Donation</td>
+                            <td>+10,000</td>
+                            <td>40,300</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-12</td>
+                            <td>Therapist stipend - On The Mend</td>
+                            <td>Programme</td>
+                            <td>-3,000</td>
+                            <td>30,300</td>
+                            <td><a href="#on-the-mend" class="impact-link">See impact →</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-10</td>
+                            <td>School workshop - Thika</td>
+                            <td>Outreach</td>
+                            <td>-5,000</td>
+                            <td>33,300</td>
+                            <td><a href="#thika" class="impact-link">See photos →</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-08</td>
+                            <td>Donation - Sarah M., Mombasa</td>
+                            <td>Donation</td>
+                            <td>+2,000</td>
+                            <td>38,300</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 1rem;"><a href="#" style="color: var(--accent);">View the full Google Sheet →</a></p>
+                <p style="font-size: 0.9rem; color: var(--neutral-600); margin-top: 0.5rem;">Data refreshes every time you visit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GET INVOLVED: DONATE & PARTNER -->
+    <section id="involved" class="section section-warm">
+        <div class="container">
+            <h2>Your support changes lives. And you'll see exactly how.</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;">
+                <!-- Individuals Card -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤝</div>
+                    <h3 style="color: var(--primary);">For Individuals</h3>
+                    <p style="margin: 1.5rem 0;">Give once or monthly. Watch your impact appear in our live ledger within 24 hours.</p>
+                    <div style="background: var(--neutral-200); padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                            <span>KES 1,000</span><span>Funds 1 therapy session</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                            <span>KES 5,000</span><span>School workshop</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                            <span>KES 10,000</span><span>Full therapy course</span>
+                        </div>
+                    </div>
+                    <a href="https://www.mchanga.africa/fundraiser/123962" class="btn btn-primary" style="width: 100%;">Donate via M-Changa</a>
+                </div>
+
+                <!-- Corporations Card -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏢</div>
+                    <h3 style="color: var(--primary);">For Corporations</h3>
+                    <p style="margin: 1.5rem 0;">Partner with us. Transform communities. Engage your team.</p>
+                    <ul style="list-style: none; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 0.8rem;">✓ The 10:1 Model: Join Hopewell</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Sponsor a County Outreach (KES 250,000)</li>
+                        <li style="margin-bottom: 0.8rem;">✓ Employee Giving & Matching</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; text-align: center;">Contact Us to Partner</a>
+                </div>
+
+                <!-- Foundations Card -->
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌱</div>
+                    <h3 style="color: var(--primary);">For Foundations</h3>
+                    <p style="margin: 1.5rem 0;">Evidence-based. Cost-effective. Radically transparent. UNICEF partner.</p>
+                    <div style="margin-bottom: 2rem;">
+                        <p style="font-weight: 600;">Download:</p>
+                        <p><a href="#" style="color: var(--accent);">2024 Annual Report (PDF)</a></p>
+                        <p><a href="#" style="color: var(--accent);">Sema Dada Summary (PDF)</a></p>
+                        <p><a href="#" style="color: var(--accent);">On The Mend Budget (PDF)</a></p>
+                    </div>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; text-align: center;">Discuss Funding</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS SECTION -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 style="text-align: center;">Our Partners</h2>
+            <div class="partners-grid">
+                <div class="partner-logo">UNICEF</div>
+                <div class="partner-logo">Hopewell Counseling</div>
+                <div class="partner-logo">Nairobi Chapel</div>
+                <div class="partner-logo">Dua Mental Health</div>
+                <div class="partner-logo">Transformers Org</div>
+                <div class="partner-logo">M-Changa</div>
+                <div class="partner-logo">Generation Kenya</div>
+                <div class="partner-logo">Femiscope Kenya</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR STORY SECTION -->
+    <section id="story" class="section section-warm">
+        <div class="container">
+            <h2>Built on a decade of clinical expertise.</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                <div>
+                    <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Athea Global was founded in 2021 as the non-profit arm of Hopewell Counseling—bringing professional mental health care to communities that cannot afford it.</p>
+                    <p style="margin-bottom: 1.5rem;">We believe mental health care is not charity—it is justice. Today, we are a small, resilient team of therapists, coordinators, and advocates working across Kenya to break the silence around mental health.</p>
+                    <div style="background: var(--primary); color: white; padding: 1.5rem; border-radius: 8px;">
+                        <p style="font-weight: 600;">The Hopewell Engine:</p>
+                        <p>For every 10 therapy sessions purchased by corporate clients at Hopewell, Hopewell funds 1 free session through Athea for an underserved individual.</p>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, var(--primary-light), var(--primary)); height: 400px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+                    [Team Photo]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="section section-light">
+        <div class="container">
+            <h2>Meet the team.</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div style="text-align: center;">
+                    <div style="width: 150px; height: 150px; background: var(--neutral-300); border-radius: 50%; margin: 0 auto 1rem;"></div>
+                    <h3>Assy Nkanata</h3>
+                    <p style="color: var(--neutral-600);">Projects/Operations Manager</p>
+                    <p style="margin-top: 1rem;">"I coordinate our response, write the reports, and ensure we show up where we're needed most. Every challenge is a lesson."</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 150px; height: 150px; background: var(--neutral-300); border-radius: 50%; margin: 0 auto 1rem;"></div>
+                    <h3>Christine Wawira</h3>
+                    <p style="color: var(--neutral-600);">Therapist</p>
+                    <p style="margin-top: 1rem;">"Sitting with the CHPs in Mai Mahiu, hearing their stories—that's why I do this work. They had never been asked how they were coping."</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="width: 150px; height: 150px; background: var(--neutral-300); border-radius: 50%; margin: 0 auto 1rem;"></div>
+                    <h3>Brenda Makena</h3>
+                    <p style="color: var(--neutral-600);">Therapist</p>
+                    <p style="margin-top: 1rem;">"We need to care for the caregivers. That is non-negotiable."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section section-warm">
+        <div class="container">
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h2>Let's work together.</h2>
+                <p style="margin-bottom: 2rem;">Interested in partnering, funding, or learning more? Reach out to us at <strong>atheaglobal@gmail.com</strong></p>
+                <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
+                    <p style="font-size: 1.2rem; margin-bottom: 1rem;">📧 Email us directly:</p>
+                    <p style="font-size: 1.5rem; color: var(--primary); margin-bottom: 2rem;">atheaglobal@gmail.com</p>
+                    <p style="color: var(--neutral-600);">We typically respond within 24-48 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <h3>ATHEA GLOBAL</h3>
+                    <p style="margin: 1rem 0; opacity: 0.8;">Change Your Narrative</p>
+                    <p style="opacity: 0.8;">Nairobi, Kenya</p>
+                    <p style="opacity: 0.8;">atheaglobal@gmail.com</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#story">Our Story</a>
+                        <a href="#programs">Programs</a>
+                        <a href="#impact">Impact & Finances</a>
+                        <a href="#involved">Get Involved</a>
+                        <a href="#stories">Stories</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Programs</h4>
+                    <div class="footer-links">
+                        <a href="#programs">On The Mend</a>
+                        <a href="#programs">Sema Dada</a>
+                        <a href="#programs">Mindful Tide</a>
+                        <a href="#programs">Fountain of Hope</a>
+                        <a href="#programs">County Outreach</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Partners</h4>
+                    <div class="footer-links">
+                        <span style="color: white;">UNICEF</span>
+                        <span style="color: white;">Hopewell Counseling</span>
+                        <span style="color: white;">M-Changa</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Athea Global Foundation. All rights reserved. | Proud partner of UNICEF | A non-profit arm of Hopewell Counseling</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for smooth scrolling -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
